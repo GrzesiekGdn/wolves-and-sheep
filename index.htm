@@ -9,21 +9,13 @@
     <table id="chessboard">
         <tbody>
             <tr>
-                <td>
-                    <img src="wolf.png">
-                </td>
                 <td></td>
-                <td>
-                    <img src="wolf.png">
-                </td>
                 <td></td>
-                <td>
-                    <img src="wolf.png">
-                </td>
                 <td></td>
-                <td>
-                    <img src="wolf.png">
-                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td></td>
             </tr>
             <tr>
@@ -90,9 +82,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>
-                    <img src="sheep.png">
-                </td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -100,6 +90,33 @@
             </tr>
         </tbody>
     </table>
-</body>
 
+    <br>
+
+    <table id="arrows">
+        <tbody>
+            <tr>
+                <td><button onclick="move(1,-1);">🡔</button></td>
+                <td><button onclick="move(1,1);">↗</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="move(-1,-1);">↙</button></td>
+                <td><button onclick="move(-1,1);">↘</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="game.js"></script>
+    <script src="render.js"></script>
+    <script>
+        var state = initGame();
+        board = document.getElementById("chessboard");
+        renderTable(board, state);
+
+        function move(up, right){
+            state = moveSheep(state, up, right);
+            renderTable(board, state);
+        }
+    </script>
+</body>
 </html>
