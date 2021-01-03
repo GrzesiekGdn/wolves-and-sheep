@@ -97,25 +97,38 @@
     <table id="arrows">
         <tbody>
             <tr>
-                <td><button onclick="move(1,-1);">⇖</button></td>
-                <td><button onclick="move(1,1);">↗</button></td>
+                <td><button id="leftUp">↖</button></td>
+                <td><button id="rightUp">↗</button></td>
             </tr>
             <tr>
-                <td><button onclick="move(-1,-1);">↙</button></td>
-                <td><button onclick="move(-1,1);">↘</button></td>
+                <td><button id="leftDown">↙</button></td>
+                <td><button id="rightDown">↘</button></td>
             </tr>
         </tbody>
     </table>
+    <!-- <script type="module" src="/modules/game.js"></script>
+    <script type="module" src="/modules/render.js"></script> -->
 
-    <script src="game.js"></script>
-    <script src="render.js"></script>
-    <script>
+    <script type="module">
+        import {initGame, moveSheep} from '/modules/game.js';
+        import {renderTable} from '/modules/render.js';
+
         var state = initGame();
-        board = document.getElementById("chessboard");
+        console.log(state);
+
+        const board = document.getElementById("chessboard");        
         renderTable(board, state);
 
+        document.getElementById("leftUp").addEventListener('click', () => move(1,-1));
+        document.getElementById("rightUp").addEventListener('click', () => move(1,1));
+        document.getElementById("leftDown").addEventListener('click', () => move(-1,-1));
+        document.getElementById("rightDown").addEventListener('click', () => move(-1,1));
+
         function move(up, right){
+            console.log(up, right);
+            console.log(state);
             state = moveSheep(state, up, right);
+            console.log(state);
             renderTable(board, state);
         }
     </script>
