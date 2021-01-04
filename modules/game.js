@@ -2,7 +2,7 @@ import { Position } from './position.js';
 import { LineState } from './states/lineState.js';
 
 export function initGame() {
-  return new LineState(0, new Position(7, 3));
+  return new LineState(0, new Position(2, 2));
 }
 
 export function moveSheep(state, up, right) {
