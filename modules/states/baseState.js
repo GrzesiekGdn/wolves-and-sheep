@@ -38,7 +38,7 @@ export const mirror = (wolves) => {
 };
 
 export const mirrorIfEven = (wolves, row) => {
-  if (row % 2 === 1) {
+  if (row % 2 === 0) {
     return mirror(wolves);
   }
   return wolves;

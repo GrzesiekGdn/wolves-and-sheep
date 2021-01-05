@@ -1,7 +1,7 @@
 import { Position } from '../position.js';
 import { BaseState, mirrorIfEven } from './baseState.js';
+import { HoleHookState } from './holeHookState.js';
 import { HookState } from './hookState.js';
-import { HoleState } from './holeState.js';
 
 // x x x x
 export class LineState extends BaseState {
@@ -19,12 +19,11 @@ export class LineState extends BaseState {
 
   move(newPos) {
     const bestPos = mirrorIfEven(new Position(this.row + 1, 1), this.row);
-    console.log(bestPos);
 
-    if (newPos.row != bestPos.row || newPos.col != bestPos.row) {
+    if (newPos.row != bestPos.row || newPos.col != bestPos.col) {
       return new HookState(this.row, newPos);
     } else {
-      return new HoleState(this.row, newPos);
+      return new HoleHookState(this.row, newPos);
     }
   }
 }
