@@ -20,6 +20,18 @@ export default class BaseState {
     );
   }
 
+  areWolvesWin() {
+    const { row, col } = this.sheep;
+    const allPossibleSheepMoves = [
+      { row: row + 1, col: col + 1 },
+      { row: row + 1, col: col - 1 },
+      { row: row - 1, col: col + 1 },
+      { row: row - 1, col: col - 1 },
+    ];
+
+    return allPossibleSheepMoves.every((m) => !this.isAvailable(m));
+  }
+
   getValue(row, col) {
     if (this.wolves.some((w) => w.row === row && w.col === col)) {
       return 'w';
