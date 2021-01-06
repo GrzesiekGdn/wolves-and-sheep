@@ -1,16 +1,18 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
-import LineState from './lineState.js';
+import SideGameEndState from './sideGameEndState.js';
+import SideHoleState from './sideHoleState.js';
 
 // _x_-_-_-
-// -_x_x_x_
-export default class ReverseHookState extends BaseState {
+// -_x_x_-_
+// _-_-_x_-
+export default class ParallelState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
       new Position(row, 1),
       new Position(row + 1, 2),
       new Position(row + 1, 4),
-      new Position(row + 1, 6),
+      new Position(row + 2, 5),
     ];
 
     super(mirrorIfOdd(wolves, row), sheepPos);
@@ -18,6 +20,7 @@ export default class ReverseHookState extends BaseState {
   }
 
   move(newPos) {
-    return new LineState(this.row + 1, newPos);
+    if (newPos.row === 1) return new SideGameEndState(this.row, newPos);
+    else return new SideHoleState(this.row + 1, newPos);
   }
 }

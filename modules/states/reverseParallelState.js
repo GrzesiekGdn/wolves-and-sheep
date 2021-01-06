@@ -1,16 +1,17 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
-import LineState from './lineState.js';
+import HookState from './hookState.js';
 
+// _-_-_x_-
+// -_x_x_-_
 // _x_-_-_-
-// -_x_x_x_
-export default class ReverseHookState extends BaseState {
+export default class ReverseParallelState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
-      new Position(row, 1),
+      new Position(row, 5),
       new Position(row + 1, 2),
       new Position(row + 1, 4),
-      new Position(row + 1, 6),
+      new Position(row + 2, 1),
     ];
 
     super(mirrorIfOdd(wolves, row), sheepPos);
@@ -18,6 +19,6 @@ export default class ReverseHookState extends BaseState {
   }
 
   move(newPos) {
-    return new LineState(this.row + 1, newPos);
+    return new HookState(this.row + 1, newPos);
   }
 }

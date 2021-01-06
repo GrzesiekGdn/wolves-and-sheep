@@ -1,15 +1,17 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
-import TwoHolesState from './twoHolesState.js';
+import HookState from './hookState.js';
 
-// _x_-_x_-
+// _-_x_-_-
 // -_-_x_x_
-export default class HoleState extends BaseState {
+// _x_-_-_-
+
+export default class SideHolePrimState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
-      new Position(row, 1),
+      new Position(row + 2, 1),
+      new Position(row, 3),
       new Position(row + 1, 4),
-      new Position(row, 5),
       new Position(row + 1, 6),
     ];
 
@@ -18,6 +20,6 @@ export default class HoleState extends BaseState {
   }
 
   move(newPos) {
-    return new TwoHolesState(this.row, newPos);
+    return new HookState(this.row + 1, newPos);
   }
 }

@@ -1,6 +1,6 @@
 import { Position } from '../position.js';
 
-export class BaseState {
+export default class BaseState {
   constructor(wolves, sheepPos) {
     this.wolves = wolves;
     this.sheep = sheepPos;

@@ -22,4 +22,7 @@ Simple implementation of a chessboard game I played in my childchood.
 
 1. add all states (combination of wolves),
 1. add end game detectors,
-1. improve html design, for example animations and sound,
+1. improve graphic design:
+   - pause between user and computer move,
+   - animations
+   - sound,

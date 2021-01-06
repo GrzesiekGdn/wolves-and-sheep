@@ -1,10 +1,10 @@
 import { Position, mirrorIfOdd } from '../position.js';
-import { BaseState } from './baseState.js';
-import { HoleHookState } from './holeHookState.js';
-import { HookState } from './hookState.js';
+import BaseState from './baseState.js';
+import HoleTState from './holeTState.js';
+import HookState from './hookState.js';
 
 // _x_x_x_x
-export class LineState extends BaseState {
+export default class LineState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
       new Position(row, 1),
@@ -23,7 +23,7 @@ export class LineState extends BaseState {
     if (newPos.row != bestPos.row || newPos.col != bestPos.col) {
       return new HookState(this.row, newPos);
     } else {
-      return new HoleHookState(this.row, newPos);
+      return new HoleTState(this.row, newPos);
     }
   }
 }

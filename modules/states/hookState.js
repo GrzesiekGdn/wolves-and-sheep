@@ -1,10 +1,10 @@
 import { Position, mirrorIfOdd } from '../position.js';
-import { BaseState } from './baseState.js';
-import { ZetState } from './zetState.js';
+import BaseState from './baseState.js';
+import ZetState from './zetState.js';
 
 // _x_x_x_-
 // -_-_-_x_
-export class HookState extends BaseState {
+export default class HookState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
       new Position(row, 1),
