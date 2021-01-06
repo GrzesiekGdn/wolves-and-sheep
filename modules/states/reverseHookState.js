@@ -1,19 +1,19 @@
-import { Position } from '../position.js';
-import { BaseState, mirrorIfEven } from './baseState.js';
+import { Position, mirrorIfOdd } from '../position.js';
+import { BaseState } from './baseState.js';
 import { LineState } from './lineState.js';
 
-//       x
-// x x x
+// _x_-_-_-
+// -_x_x_x_
 export class ReverseHookState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
-      new Position(row + 1, 1),
-      new Position(row + 1, 3),
-      new Position(row + 1, 5),
-      new Position(row, 6),
+      new Position(row, 1),
+      new Position(row + 1, 2),
+      new Position(row + 1, 4),
+      new Position(row + 1, 6),
     ];
 
-    super(mirrorIfEven(wolves, row), sheepPos);
+    super(mirrorIfOdd(wolves, row), sheepPos);
     this.row = row;
   }
 

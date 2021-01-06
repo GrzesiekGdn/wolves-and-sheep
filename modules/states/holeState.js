@@ -1,19 +1,19 @@
-import { Position } from '../position.js';
-import { BaseState, mirrorIfEven } from './baseState.js';
+import { Position, mirrorIfOdd } from '../position.js';
+import { BaseState } from './baseState.js';
 import { HoleZetState } from './holeZetState.js';
 
-// x x   x
-//    x
+// _x_-_x_x
+// -_-_x_-_
 export class HoleState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
-      new Position(row, 0),
-      new Position(row, 2),
-      new Position(row + 1, 3),
-      new Position(row, 6),
+      new Position(row, 1),
+      new Position(row + 1, 4),
+      new Position(row, 5),
+      new Position(row, 7),
     ];
 
-    super(mirrorIfEven(wolves, row), sheepPos);
+    super(mirrorIfOdd(wolves, row), sheepPos);
     this.row = row;
   }
 

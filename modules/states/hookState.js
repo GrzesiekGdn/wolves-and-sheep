@@ -1,23 +1,23 @@
-import { Position } from '../position.js';
-import { BaseState, mirrorIfEven } from './baseState.js';
-import { ReverseUState } from './reverseUState.js';
+import { Position, mirrorIfOdd } from '../position.js';
+import { BaseState } from './baseState.js';
+import { ZetState } from './zetState.js';
 
-//   x x x
-// x
+// _x_x_x_-
+// -_-_-_x_
 export class HookState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
-      new Position(row + 1, 1),
-      new Position(row, 2),
-      new Position(row, 4),
-      new Position(row, 6),
+      new Position(row, 1),
+      new Position(row, 3),
+      new Position(row, 5),
+      new Position(row + 1, 6),
     ];
 
-    super(mirrorIfEven(wolves, row), sheepPos);
+    super(mirrorIfOdd(wolves, row), sheepPos);
     this.row = row;
   }
 
   move(newPos) {
-    return new ReverseUState(this.row, newPos);
+    return new ZetState(this.row, newPos);
   }
 }

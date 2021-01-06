@@ -1,24 +1,24 @@
-import { Position } from '../position.js';
-import { BaseState, mirrorIfEven } from './baseState.js';
+import { Position, mirrorIfOdd } from '../position.js';
+import { BaseState } from './baseState.js';
 import { HoleHookState } from './holeHookState.js';
 import { HookState } from './hookState.js';
 
-// x x x x
+// _x_x_x_x
 export class LineState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
-      new Position(row, 0),
-      new Position(row, 2),
-      new Position(row, 4),
-      new Position(row, 6),
+      new Position(row, 1),
+      new Position(row, 3),
+      new Position(row, 5),
+      new Position(row, 7),
     ];
 
-    super(mirrorIfEven(wolves, row), sheepPos);
+    super(mirrorIfOdd(wolves, row), sheepPos);
     this.row = row;
   }
 
   move(newPos) {
-    const bestPos = mirrorIfEven(new Position(this.row + 1, 1), this.row);
+    const bestPos = mirrorIfOdd(new Position(this.row + 1, 6), this.row);
 
     if (newPos.row != bestPos.row || newPos.col != bestPos.col) {
       return new HookState(this.row, newPos);
