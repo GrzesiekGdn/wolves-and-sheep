@@ -1,4 +1,4 @@
-export function renderTable(table, state) {
+export default function renderTable(table, state) {
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 8; col++) {
       const val = state.getValue(row, col);

@@ -1,5 +1,6 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
+import ReverseUState from './reverseUState.js';
 import ZetState from './zetState.js';
 
 // _x_x_x_-
@@ -18,6 +19,12 @@ export default class HookState extends BaseState {
   }
 
   move(newPos) {
-    return new ZetState(this.row, newPos);
+    const bestPos = mirrorIfOdd(new Position(this.row + 1, 4), this.row);
+
+    if (newPos.row != bestPos.row || newPos.col != bestPos.col) {
+      return new ZetState(this.row, newPos);
+    } else {
+      return new ReverseUState(this.row, newPos);
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
 import LineState from './lineState.js';
+import SideGameEndPrimState from './sideGameEndPrimState.js';
 
 // _x_-_-_-
 // -_x_x_x_
@@ -18,6 +19,12 @@ export default class ReverseHookState extends BaseState {
   }
 
   move(newPos) {
-    return new LineState(this.row + 1, newPos);
+    const bestPos = mirrorIfOdd(new Position(this.row + 1, 0), this.row);
+
+    if (newPos.row != bestPos.row || newPos.col != bestPos.col) {
+      return new LineState(this.row + 1, newPos);
+    } else {
+      return new SideGameEndPrimState(this.row, newPos);
+    }
   }
 }

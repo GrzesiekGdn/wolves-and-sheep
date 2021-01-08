@@ -19,6 +19,6 @@ export default class DepthHoleState extends BaseState {
   }
 
   move(newPos) {
-    return new HoleTPrimState(this.row, newPos);
+    return new HoleTPrimState(this.row + 1, newPos);
   }
 }

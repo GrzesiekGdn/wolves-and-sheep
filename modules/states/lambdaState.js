@@ -1,7 +1,7 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
 import LongLambdaState from './longLambdaState.js';
-import ParllelPrimState from './parllelPrimState.js';
+import ParllelPrimState from './parallelPrimState.js';
 
 // _-_x_-_-
 // -_-_x_-_

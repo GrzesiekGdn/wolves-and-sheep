@@ -1,16 +1,16 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
-import ZetState from './zetState.js';
+import ReverseHookPrimState from './reverseHookPrimState.js';
 
-// _x_x_x_-
-// -_-_x_-_
-export default class HoleTPrimState extends BaseState {
+// _-_x_x_-
+// -_x_x_-_
+export default class ParallelPrimState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
-      new Position(row, 1),
       new Position(row, 3),
-      new Position(row + 1, 4),
       new Position(row, 5),
+      new Position(row + 1, 2),
+      new Position(row + 1, 4),
     ];
 
     super(mirrorIfOdd(wolves, row), sheepPos);
@@ -18,6 +18,6 @@ export default class HoleTPrimState extends BaseState {
   }
 
   move(newPos) {
-    return new ZetState(this.row, newPos);
+    return new ReverseHookPrimState(this.row, newPos);
   }
 }

@@ -1,10 +1,6 @@
 import { Position } from './position.js';
-import { renderTable } from '/modules/render.js';
+import renderTable from '/modules/render.js';
 import LineState from './states/lineState.js';
-import ZetState from './states/zetState.js';
-import ReverseUState from './states/reverseUState.js';
-import SevenPrimState from './states/sevenPrimState.js';
-import BaseState from './states/baseState.js';
 
 export default class Game {
   constructor(board) {
@@ -14,8 +10,6 @@ export default class Game {
 
   initGame() {
     this.state = new LineState(0, new Position(7, 4));
-    //this.state = new ZetState(0, new Position(2, 1)); // not finished
-    //this.state = new SevenPrimState(0, new Position(2, 3));
     renderTable(this.board, this.state);
   }
 
@@ -33,7 +27,7 @@ export default class Game {
     renderTable(this.board, this.state);
 
     if (newPos.row === 0) {
-      alert('The sheep won!');
+      alert('Your sheep won!');
       this.initGame();
       return;
     }

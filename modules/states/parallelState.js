@@ -20,7 +20,10 @@ export default class ParallelState extends BaseState {
   }
 
   move(newPos) {
-    if (newPos.row === 1) return new SideGameEndState(this.row, newPos);
-    else return new SideHoleState(this.row + 1, newPos);
+    const bestPos = mirrorIfOdd(new Position(this.row + 1, 0), this.row);
+
+    if (newPos.row == bestPos.row && newPos.col == bestPos.col) {
+      return new SideGameEndState(this.row, newPos);
+    } else return new SideHoleState(this.row + 1, newPos);
   }
 }
