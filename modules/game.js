@@ -3,8 +3,8 @@ import LineState from './boardStates/lineState.js';
 import { GameStatus } from './gameStatus.js';
 
 export default class Game {
-  constructor(gameRenderer) {
-    this.gameRenderer = gameRenderer;
+  constructor(renderGame) {
+    this.renderGame = renderGame;
     this.initGame();
   }
 
@@ -13,14 +13,14 @@ export default class Game {
     const gameStatus = GameStatus.PlayerTime;
 
     this.gameState = new GameState(boardState, gameStatus);
-    this.gameRenderer.renderGame(this.gameState);
+    this.renderGame(this.gameState);
   }
 
-  moveSheep(up, right) {
+  moveSheepTo(row, col) {
     const boardState = this.gameState.boardState;
     const sheep = boardState.sheep;
 
-    var newPos = new Position(sheep.row - up, sheep.col + right);
+    var newPos = new Position(row, col);
 
     if (!boardState.isAvailable(newPos)) {
       console.log('not available');
@@ -32,7 +32,7 @@ export default class Game {
     const statusAfterPlayer =
       newPos.row === 0 ? GameStatus.SheepWon : GameStatus.ComputerTime;
     this.gameState = new GameState(boardState, statusAfterPlayer);
-    this.gameRenderer.renderGame(this.gameState);
+    this.renderGame(this.gameState);
 
     if (statusAfterPlayer != GameStatus.ComputerTime) {
       return;
@@ -47,10 +47,10 @@ export default class Game {
 
     setTimeout(
       (r, s) => {
-        r.renderGame(s);
+        r(s);
       },
-      500,
-      this.gameRenderer,
+      100,
+      this.renderGame,
       this.gameState
     );
   }

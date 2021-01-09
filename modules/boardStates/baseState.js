@@ -4,6 +4,7 @@ export default class BaseState {
   constructor(wolves, sheepPos) {
     this.wolves = wolves;
     this.sheep = sheepPos;
+    this.allAvailableSheepMoves = this.getAllAvailableSheepMoves();
   }
 
   move(newPos) {
@@ -20,21 +21,31 @@ export default class BaseState {
     );
   }
 
-  areWolvesWin() {
+  getAllAvailableSheepMoves() {
     const { row, col } = this.sheep;
-    const allPossibleSheepMoves = [
+    const allNextSheepFields = [
       { row: row + 1, col: col + 1 },
       { row: row + 1, col: col - 1 },
       { row: row - 1, col: col + 1 },
       { row: row - 1, col: col - 1 },
     ];
 
-    return allPossibleSheepMoves.every((m) => !this.isAvailable(m));
+    return allNextSheepFields.filter((m) => this.isAvailable(m));
+  }
+
+  areWolvesWin() {
+    return this.allAvailableSheepMoves.length === 0;
   }
 
   getValue(row, col) {
     if (this.wolves.some((w) => w.row === row && w.col === col)) {
       return 'w';
+    }
+
+    if (
+      this.allAvailableSheepMoves.some((w) => w.row === row && w.col === col)
+    ) {
+      return 'a';
     }
 
     return this.sheep.row === row && this.sheep.col === col ? 's' : '';

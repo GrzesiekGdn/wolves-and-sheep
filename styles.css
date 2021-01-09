@@ -19,6 +19,14 @@ tr:nth-child(odd) td:nth-child(odd) {
   background: white;
 }
 
+#chessboard td.available {
+  background: darkgreen;
+}
+
+#chessboard td.available:hover {
+  background: lightgreen;
+}
+
 #chessboard img {
   display: block;
   width: 95%;
