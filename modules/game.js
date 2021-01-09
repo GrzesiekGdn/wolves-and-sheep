@@ -1,50 +1,64 @@
 import { Position } from './position.js';
-import renderTable from '/modules/render.js';
-import LineState from './states/lineState.js';
+import LineState from './boardStates/lineState.js';
+import { GameStatus } from './gameStatus.js';
 
 export default class Game {
-  constructor(board) {
-    this.board = board;
+  constructor(gameRenderer) {
+    this.gameRenderer = gameRenderer;
     this.initGame();
   }
 
   initGame() {
-    this.state = new LineState(0, new Position(7, 4));
-    renderTable(this.board, this.state);
+    const boardState = new LineState(0, new Position(7, 4));
+    const gameStatus = GameStatus.PlayerTime;
+
+    this.gameState = new GameState(boardState, gameStatus);
+    this.gameRenderer.renderGame(this.gameState);
   }
 
   moveSheep(up, right) {
-    const sheep = this.state.sheep;
+    const boardState = this.gameState.boardState;
+    const sheep = boardState.sheep;
 
     var newPos = new Position(sheep.row - up, sheep.col + right);
 
-    if (!this.state.isAvailable(newPos)) {
+    if (!boardState.isAvailable(newPos)) {
       console.log('not available');
       return;
     }
 
-    this.state.sheep = newPos;
-    renderTable(this.board, this.state);
+    boardState.sheep = newPos;
 
-    if (newPos.row === 0) {
-      alert('Your sheep won!');
-      this.initGame();
+    const statusAfterPlayer =
+      newPos.row === 0 ? GameStatus.SheepWon : GameStatus.ComputerTime;
+    this.gameState = new GameState(boardState, statusAfterPlayer);
+    this.gameRenderer.renderGame(this.gameState);
+
+    if (statusAfterPlayer != GameStatus.ComputerTime) {
       return;
     }
 
-    this.state = this.state.move(newPos);
+    const newBoardState = boardState.move(newPos);
+    const statusAfterComputer = newBoardState.areWolvesWin()
+      ? GameStatus.WolvesWon
+      : GameStatus.PlayerTime;
+
+    this.gameState = new GameState(newBoardState, statusAfterComputer);
 
     setTimeout(
-      (b, s) => {
-        renderTable(b, s);
-        if (s.areWolvesWin()) {
-          alert('Wolves won!');
-          this.initGame();
-        }
+      (r, s) => {
+        r.renderGame(s);
       },
-      100,
-      this.board,
-      this.state
+      500,
+      this.gameRenderer,
+      this.gameState
     );
+  }
+}
+
+class GameState {
+  constructor(boardState, status) {
+    this.boardState = boardState;
+    this.status = status;
   }
 }
