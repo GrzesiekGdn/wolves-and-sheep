@@ -5,7 +5,6 @@ import HookState from './hookState.js';
 // _-_x_-_-
 // -_-_x_x_
 // _x_-_-_-
-
 export default class SideHolePrimState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [

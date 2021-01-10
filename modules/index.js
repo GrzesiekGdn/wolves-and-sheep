@@ -10,6 +10,9 @@ const statusDiv = document.getElementById('statusDiv');
 
 const renderGame = (gameState) => {
   const state = gameState.boardState;
+  const gameStatus = gameState.status;
+
+  console.log('render', state);
 
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 8; col++) {
@@ -19,7 +22,7 @@ const renderGame = (gameState) => {
       const picture = val === 'w' ? 'wolf.png' : val === 's' ? 'sheep.png' : '';
       var innerHtml = `<img src='${picture}'>`;
 
-      if (val === 'a') {
+      if (gameStatus === GameStatus.PlayerTime && val === 'a') {
         cell.classList.add('available');
       } else {
         cell.classList.remove('available');
@@ -32,12 +35,12 @@ const renderGame = (gameState) => {
   let statusText = '';
   const status = gameState.status;
   if (status === GameStatus.WolvesWon) {
-    statusText = 'Wolves won!';
+    statusText = 'Wilki wygrały!';
   } else if (status === GameStatus.SheepWon) {
-    statusText = 'Your sheep won!';
+    statusText = 'Wygrałeś!';
   }
 
-  statusDiv.innerHTML = `<h1>${statusText}</h1>`;
+  statusDiv.innerHTML = `<h2>${statusText}</h2>`;
 };
 
 const game = new Game(renderGame);

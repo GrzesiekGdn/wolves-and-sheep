@@ -1,3 +1,36 @@
+.wrapper {
+  display: grid;
+  gap: 20px;
+  grid-template-areas:
+    'header'
+    'content'
+    'sidebar'
+    'footer';
+}
+
+.main-head {
+  grid-area: header;
+}
+.content {
+  grid-area: content;
+}
+.side {
+  grid-area: sidebar;
+}
+.main-footer {
+  grid-area: footer;
+}
+
+@media (min-width: 700px) {
+  .wrapper {
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      'header  header'
+      'content sidebar'
+      'footer footer';
+  }
+}
+
 #chessboard {
   border-color: red;
   border-style: solid;

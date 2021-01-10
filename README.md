@@ -14,15 +14,6 @@ Simple implementation of a chessboard game I played in my childchood.
 
 # Technology
 
+1. vanilia js;
 1. html;
 1. css;
-1. js;
-
-# ToDo
-
-1. add all states (combination of wolves),
-1. add end game detectors,
-1. improve graphic design:
-   - pause between user and computer move,
-   - animations
-   - sound,

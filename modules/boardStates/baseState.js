@@ -33,6 +33,11 @@ export default class BaseState {
     return allNextSheepFields.filter((m) => this.isAvailable(m));
   }
 
+  setSheep(newPos){
+    this.sheep = newPos;
+    this.allAvailableSheepMoves = this.getAllAvailableSheepMoves();
+  }
+  
   areWolvesWin() {
     return this.allAvailableSheepMoves.length === 0;
   }

@@ -18,7 +18,9 @@ export default class Game {
 
   moveSheepTo(row, col) {
     const boardState = this.gameState.boardState;
-    const sheep = boardState.sheep;
+    if (this.gameState.status != GameStatus.PlayerTime) {
+      return;
+    }
 
     var newPos = new Position(row, col);
 
@@ -27,14 +29,13 @@ export default class Game {
       return;
     }
 
-    boardState.sheep = newPos;
-
+    boardState.setSheep(newPos);
     const statusAfterPlayer =
       newPos.row === 0 ? GameStatus.SheepWon : GameStatus.ComputerTime;
     this.gameState = new GameState(boardState, statusAfterPlayer);
     this.renderGame(this.gameState);
 
-    if (statusAfterPlayer != GameStatus.ComputerTime) {
+    if (statusAfterPlayer == GameStatus.SheepWon) {
       return;
     }
 
@@ -43,15 +44,19 @@ export default class Game {
       ? GameStatus.WolvesWon
       : GameStatus.PlayerTime;
 
-    this.gameState = new GameState(newBoardState, statusAfterComputer);
+    const gameStateAfterComputer = new GameState(
+      newBoardState,
+      statusAfterComputer
+    );
 
     setTimeout(
-      (r, s) => {
-        r(s);
+      (t, s) => {
+        t.gameState = s;
+        t.renderGame(s);
       },
       100,
-      this.renderGame,
-      this.gameState
+      this,
+      gameStateAfterComputer
     );
   }
 }

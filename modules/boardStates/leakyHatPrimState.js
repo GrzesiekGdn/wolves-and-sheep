@@ -5,7 +5,6 @@ import ReverseUState from './reverseUState.js';
 // _-_x_-_-
 // -_-_x_-_
 // _x_-_x_-
-
 export default class LeakyHatPrimState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [

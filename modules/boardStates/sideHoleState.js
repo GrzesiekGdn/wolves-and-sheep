@@ -24,6 +24,6 @@ export default class SideHoleState extends BaseState {
 
     if (mirroredPos.row === this.row + 1 && mirroredPos.col === 4)
       return new ReverseUState(this.row, newPos);
-    else return new ZetState(this.row + 1, newPos);
+    else return new ZetState(this.row, newPos);
   }
 }

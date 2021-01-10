@@ -4,7 +4,6 @@ import BaseState from './baseState.js';
 // _x_-_-_-
 // o_-_x_x_
 // _x_-_-_-
-
 export default class SideGameEndPrimState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
