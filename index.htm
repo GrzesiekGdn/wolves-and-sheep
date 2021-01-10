@@ -10,7 +10,7 @@
 <body>
     <div class="wrapper">
         <header class="main-head">
-            <h1>Gra planszowa wilk i zając</h1>
+            <h1>Wilki i owca</h1>
         </header>
         <article class="content">
             <table id="chessboard">
@@ -99,15 +99,19 @@
             </table>
         </article>
         <aside class="side">
+            <div id="statusDiv">
+            </div>
+            <button id="restartGame">Zacznij od początku</button>
             <h3>Zasady gry</h3>
             <p>Celem owcy jest dotarcie do pierwszej linii szachownicy, owca może poruszać się do przodu i do tyłu po
                 skosie.
+            </p>
+            <p>
                 Celem wilków jest zablokowanie owcy, wilki poruszają się tylko do przodu po skosie.
             </p>
-            <div id="statusDiv">
-            </div>
-
-            <button id="restartGame">Zacznij od początku</button>
+            <p>
+                Gracz steruje owcą kilkając na zielone pola.
+            </p>
         </aside>
 
         <footer class="main-footer">&copy; GDN 2020</footer>

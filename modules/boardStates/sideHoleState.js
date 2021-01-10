@@ -1,7 +1,7 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
 import ReverseUState from './reverseUState.js';
-import ZetState from './zetState.js';
+import ReverseZetState from './reverseZetState.js';
 
 // -_x_x_x_
 // _x_-_-_-
@@ -24,6 +24,6 @@ export default class SideHoleState extends BaseState {
 
     if (mirroredPos.row === this.row + 1 && mirroredPos.col === 4)
       return new ReverseUState(this.row, newPos);
-    else return new ZetState(this.row, newPos);
+    else return new ReverseZetState(this.row, newPos);
   }
 }
