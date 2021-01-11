@@ -1,6 +1,6 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
-import { TwoHolesParallelState } from './twoHolesParallelState.js';
+import TwoHolesParallelState from './twoHolesParallelState.js';
 import DepthHoleState from './depthHoleState.js';
 
 // _x_-_x_-

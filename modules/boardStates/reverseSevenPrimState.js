@@ -19,6 +19,6 @@ export default class ReverseSevenPrimState extends BaseState {
 
   move(newPos) {
     // wilki stają wryte, bo ta pozycja prowadzi do wygranej owcy!
-    return new ReverseSevenPrimState(row, newPos);
+    return new ReverseSevenPrimState(this.row, newPos);
   }
 }

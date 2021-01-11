@@ -1,6 +1,6 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
-import ReverseSevenPrimState from './reverseSevenPrimState.js';
+import TwoHolesParallelState from './twoHolesParallelState.js';
 
 // _-_-_x_-
 // -_x_x_x_
@@ -18,6 +18,6 @@ export default class ReverseHookSecState extends BaseState {
   }
 
   move(newPos) {
-    return new ReverseSevenPrimState(this.row, newPos);
+    return new TwoHolesParallelState(this.row, newPos);
   }
 }

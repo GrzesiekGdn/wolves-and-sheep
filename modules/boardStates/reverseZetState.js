@@ -4,7 +4,6 @@ import ReverseHookSecState from './reverseHookSecState.js';
 
 // _-_-_x_x
 // -_x_x_-_
-
 export default class ReverseZetState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [

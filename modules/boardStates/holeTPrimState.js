@@ -4,7 +4,7 @@ import ZetState from './zetState.js';
 
 // _x_x_x_-
 // -_-_x_-_
-export default class HoleTPrimState extends BaseState {
+export default class extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
       new Position(row, 1),

@@ -1,11 +1,12 @@
 import { Position, mirrorIfOdd } from '../position.js';
 import BaseState from './baseState.js';
 import TwoOnBackState from './twoOnBackState.js';
+import HoleTPrimState from './holeTPrimState.js';
 
 // _-_-_x_-
 // -_x_-_x_
 // _-_x_-_-
-export class TwoHolesParallelState extends BaseState {
+export default class TwoHolesParallelState extends BaseState {
   constructor(row, sheepPos) {
     let wolves = [
       new Position(row + 1, 2),
@@ -19,6 +20,9 @@ export class TwoHolesParallelState extends BaseState {
   }
 
   move(newPos) {
-    return new TwoOnBackState(this.row, newPos);
+    if (mirrorIfOdd(newPos, this.row).col < 4) {
+      return new TwoOnBackState(this.row, newPos);
+    }
+    return new HoleTPrimState(this.row + 1, newPos);
   }
 }

@@ -19,11 +19,10 @@ export default class SideHoleState extends BaseState {
   }
 
   move(newPos) {
-    const mirroredPos = mirrorIfOdd(newPos, this.row);
-    console.log('mirroredpos:', mirroredPos);
-
-    if (mirroredPos.row === this.row + 1 && mirroredPos.col === 4)
+    const bestPos = mirrorIfOdd(new Position(this.row + 1, 6));
+    console.log('bestPos', bestPos);
+    if (newPos.row != bestPos.row || newPos.col != bestPos.col) {
       return new ReverseUState(this.row, newPos);
-    else return new ReverseZetState(this.row, newPos);
+    } else return new ReverseZetState(this.row, newPos);
   }
 }
