@@ -1,9 +1,6 @@
 import { Position } from './position.js';
 import LineState from './boardStates/lineState.js';
 import { GameStatus } from './gameStatus.js';
-import SideHoleState from './boardStates/sideHoleState.js';
-import TwoHolesParallelState from './boardStates/twoHolesParallelState.js';
-
 export default class Game {
   constructor(renderGame) {
     this.renderGame = renderGame;
@@ -11,10 +8,7 @@ export default class Game {
   }
 
   initGame() {
-    //const boardState = new LineState(0, new Position(7, 4));
-    //const boardState = new ReverseHookSecState(0, new Position(2, 5));
-    //const boardState = new SideHoleState(1, new Position(3, 2));
-    const boardState = new TwoHolesParallelState(1, new Position(4, 3));
+    const boardState = new LineState(0, new Position(7, 4));
     const gameStatus = GameStatus.PlayerTime;
 
     this.gameState = new GameState(boardState, gameStatus);
