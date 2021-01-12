@@ -20,15 +20,19 @@ const renderGame = (gameState) => {
 
       const val = state.getValue(row, col);
       const picture = val === 'w' ? 'wolf.png' : val === 's' ? 'sheep.png' : '';
-      var innerHtml = `<img src='${picture}'>`;
+
+      if (picture !== '') {
+        var innerHtml = `<img src='${picture}'>`;
+        cell.innerHTML = innerHtml;
+      } else {
+        cell.innerHTML = '';
+      }
 
       if (gameStatus === GameStatus.PlayerTime && val === 'a') {
         cell.classList.add('available');
       } else {
         cell.classList.remove('available');
       }
-
-      cell.innerHTML = innerHtml;
     }
   }
 
