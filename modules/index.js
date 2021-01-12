@@ -16,7 +16,7 @@ const renderGame = (gameState) => {
 
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 8; col++) {
-      const cell = board.rows[row].cells[col];
+      const cell = board.rows[row + 1].cells[col + 1];
 
       const val = state.getValue(row, col);
       const picture = val === 'w' ? 'wolf.png' : val === 's' ? 'sheep.png' : '';
@@ -59,7 +59,7 @@ const moveTo = (row, col) => {
 
 for (var row = 0; row < 8; row++) {
   for (var col = 0; col < 8; col++) {
-    const cell = board.rows[row].cells[col];
+    const cell = board.rows[row + 1].cells[col + 1];
     cell.addEventListener('click', moveTo(row, col));
   }
 }
