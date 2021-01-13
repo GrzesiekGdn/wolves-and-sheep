@@ -19,7 +19,7 @@ export default class SideHoleState extends BaseState {
   }
 
   move(newPos) {
-    const bestPos = mirrorIfOdd(new Position(this.row + 1, 6));
+    const bestPos = mirrorIfOdd(new Position(this.row + 1, 6), this.row);
     console.log('bestPos', bestPos);
     if (newPos.row != bestPos.row || newPos.col != bestPos.col) {
       return new ReverseUState(this.row, newPos);
